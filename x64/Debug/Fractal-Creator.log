@@ -1,0 +1,6 @@
+﻿  BitmapFileHeader.cpp
+C:\Users\peter\Documents\git\Fractal-Creator\BitmapFileHeader.cpp(1,1): warning C4103: alignment changed after including header, may be due to missing #pragma pack(pop)
+  BitmapInfoHeader.cpp
+C:\Users\peter\Documents\git\Fractal-Creator\BitmapInfoHeader.cpp(1,1): warning C4103: alignment changed after including header, may be due to missing #pragma pack(pop)
+  Generating Code...
+  Fractal-Creator.vcxproj -> C:\Users\peter\Documents\git\Fractal-Creator\x64\Debug\Fractal-Creator.exe

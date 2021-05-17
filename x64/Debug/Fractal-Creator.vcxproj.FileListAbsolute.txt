@@ -1,0 +1,2 @@
+C:\Users\peter\Documents\git\Fractal-Creator\x64\Debug\Fractal-Creator.exe
+C:\Users\peter\Documents\git\Fractal-Creator\x64\Debug\Fractal-Creator.pdb
