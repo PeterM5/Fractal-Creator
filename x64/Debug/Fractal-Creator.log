@@ -1,6 +1,5 @@
-﻿  BitmapFileHeader.cpp
-C:\Users\peter\Documents\git\Fractal-Creator\BitmapFileHeader.cpp(1,1): warning C4103: alignment changed after including header, may be due to missing #pragma pack(pop)
-  BitmapInfoHeader.cpp
-C:\Users\peter\Documents\git\Fractal-Creator\BitmapInfoHeader.cpp(1,1): warning C4103: alignment changed after including header, may be due to missing #pragma pack(pop)
-  Generating Code...
+﻿  Fractal-Creator.cpp
+C:\Users\peter\Documents\git\Fractal-Creator\Fractal-Creator.cpp(19,25): warning C4244: 'initializing': conversion from 'double' to 'uint8_t', possible loss of data
+C:\Users\peter\Documents\git\Fractal-Creator\Fractal-Creator.cpp(20,27): warning C4244: 'initializing': conversion from 'double' to 'uint8_t', possible loss of data
+C:\Users\peter\Documents\git\Fractal-Creator\Fractal-Creator.cpp(21,26): warning C4244: 'initializing': conversion from 'double' to 'uint8_t', possible loss of data
   Fractal-Creator.vcxproj -> C:\Users\peter\Documents\git\Fractal-Creator\x64\Debug\Fractal-Creator.exe
