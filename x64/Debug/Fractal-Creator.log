@@ -1,4 +1,5 @@
 ﻿  Fractal-Creator.cpp
-  Mandelbrot.cpp
-  Generating Code...
+C:\Users\peter\Documents\git\Fractal-Creator\Fractal-Creator.cpp(56,25): warning C4244: 'initializing': conversion from 'double' to 'uint8_t', possible loss of data
+C:\Users\peter\Documents\git\Fractal-Creator\Fractal-Creator.cpp(57,27): warning C4244: 'initializing': conversion from 'double' to 'uint8_t', possible loss of data
+C:\Users\peter\Documents\git\Fractal-Creator\Fractal-Creator.cpp(58,26): warning C4244: 'initializing': conversion from 'double' to 'uint8_t', possible loss of data
   Fractal-Creator.vcxproj -> C:\Users\peter\Documents\git\Fractal-Creator\x64\Debug\Fractal-Creator.exe

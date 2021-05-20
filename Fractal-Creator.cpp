@@ -2,62 +2,74 @@
 //
 
 #include <iostream>
+#include <cstdint>
+#include <math.h>
 #include "Bitmap.h"
 #include "Mandelbrot.h"
+#include "ZoomList.h"
 
 int main()
 {
-    int const WIDTH = 800;
-    int const HEIGHT = 600;
+    int const WIDTH = 400;
+    int const HEIGHT = 400;
 
-    double const XSHIFT = 1.5;
-    double const YSHIFT = 1;
+    ZoomList zoomList(WIDTH, HEIGHT);
+    zoomList.add(Zoom(WIDTH/2, HEIGHT/2, 2.0/WIDTH));
 
-    double const XSCALE = 2;
-    double const YSCALE = 2;
 
     Bitmap bitmap(WIDTH, HEIGHT);
 
-    double min = 999999;
-    double max = -999999;
+    unique_ptr<int[]> histogram(new int[Mandelbrot::MAX_ITERATIONS]{0});
+    unique_ptr<int[]> fractal(new int[WIDTH * HEIGHT]{ 0 });
 
-    
     for (int y = 0; y < HEIGHT; y++) {
+        printf("y: %d / %d\n", y, HEIGHT);
         for (int x = 0; x < WIDTH; x++) {
-            double xFractal = ((x * 2.0 * XSCALE) / WIDTH) - (1.0 + XSHIFT);
-            double yFractal = ((y * 2.0 * YSCALE) / HEIGHT) - (1.0 + YSHIFT);
+            pair<double, double> coords = zoomList.doZoom(x, y);
 
-            int iterations = Mandelbrot::getIterations(xFractal, yFractal);
+            int iterations = Mandelbrot::getIterations(coords.first, coords.second);
 
+            fractal[WIDTH * y + x] = iterations;
 
-            uint8_t red = (uint8_t)(256.0 * (double)iterations / Mandelbrot::MAX_ITERATIONS);
+            if (iterations != Mandelbrot::MAX_ITERATIONS)
+				histogram[iterations]++;
 
-			//printf("%d: %d:  %d\n", x, y, iterations);
-
-
-			bitmap.setPixel(x, y, red, 0, 0);
-
-            if (red < min) min = red;
-            if (red > max) max = red;
         }
     }
 
-    cout << min << ", " << max << endl;
+    int total = 0;
+    for (int i = 0; i < Mandelbrot::MAX_ITERATIONS; i++) {
+        total += histogram[i];
+    }
 
-
-    /*
     for (int y = 0; y < HEIGHT; y++) {
+        printf("y: %d / %d\n", y, HEIGHT);
         for (int x = 0; x < WIDTH; x++) {
-            uint8_t red = x * (255.0 / (double)WIDTH);
-            uint8_t green = (WIDTH - x) * (255.0 / (double)WIDTH);
-            uint8_t blue = y * (255.0 / (double)HEIGHT);
-            bitmap.setPixel(x, y, red, green, blue);
+            int iterations = fractal[WIDTH * y + x];
+
+            double hue = 0.0;
+			for (int i = 0; i <= iterations; i++) {
+				hue += ((double)histogram[i])/total;
+			}
+
+
+            uint8_t red = pow(255, hue);
+            uint8_t green = pow(255, hue);
+            uint8_t blue = pow(255, hue);
+            red = red * (WIDTH - x) / WIDTH;
+            green = green * y / HEIGHT;
+            blue = blue * x / WIDTH;
+
+
+
+			bitmap.setPixel(x, y, red, green, blue);
+
         }
     }
-    */
+
 
     bitmap.write("test.bmp");
 
-    std::cout << "Hello World!\n";
+    std::cout << "Written!\n";
     return 0;
 }
